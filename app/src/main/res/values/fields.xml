@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="id">id</string>
+    <string name="area">area</string>
+    <string name="city_type">type of town</string>
+    <string name="city">name of town</string>
+    <string name="address_type">street type</string>
+    <string name="address">street name</string>
+    <string name="house">building</string>
+    <string name="install_place">install place</string>
+    <string name="work_time">work time</string>
+    <string name="gps_x">latitude</string>
+    <string name="gps_y">longitude</string>
+    <string name="install_place_full">Bank</string>
+    <string name="work_time_full">Bank</string>
+    <string name="ATM_type">Bank</string>
+    <string name="ATM_error">Bank</string>
+    <string name="currency">Bank</string>
+    <string name="cash_in">Bank</string>
+    <string name="ATM_printer">Bank</string>
+</resources>
