@@ -1,9 +1,13 @@
 package com.gmail.wondergab12.bank.repository;
 
+import com.gmail.wondergab12.bank.repository.database.DatabaseResponse;
+
+import java.util.Optional;
+
 public interface Repository {
 
     long insertResponse(String city, String currency, String response);
 
-    String readResponse(String city, String currency);
+    Optional<DatabaseResponse> readResponse(String city, String currency);
 
 }

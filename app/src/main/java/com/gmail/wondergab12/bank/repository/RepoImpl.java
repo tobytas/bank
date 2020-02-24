@@ -4,6 +4,9 @@ import android.content.Context;
 
 import com.gmail.wondergab12.bank.repository.database.BankOpenHelper;
 import com.gmail.wondergab12.bank.repository.database.DatabaseDao;
+import com.gmail.wondergab12.bank.repository.database.DatabaseResponse;
+
+import java.util.Optional;
 
 public class RepoImpl implements Repository {
 
@@ -19,7 +22,7 @@ public class RepoImpl implements Repository {
     }
 
     @Override
-    public String readResponse(String city, String currency) {
+    public Optional<DatabaseResponse> readResponse(String city, String currency) {
         return databaseDao.readRecord(city, currency);
     }
 

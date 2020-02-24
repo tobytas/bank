@@ -8,9 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class BankOpenHelper extends SQLiteOpenHelper implements DatabaseHelper {
 
     private static final String DATABASE_NAME = "bank.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
-    private static BankOpenHelper instance;
+    private static DatabaseHelper instance;
 
     public static DatabaseHelper getInstance(Context context) {
         if (instance == null) {
@@ -20,11 +20,11 @@ public class BankOpenHelper extends SQLiteOpenHelper implements DatabaseHelper {
         return instance;
     }
 
-    private AtmsDao atmsDao;
+    private DatabaseDao databaseDao;
 
     private BankOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        atmsDao = new AtmsDao(getWritableDatabase());
+        databaseDao = new AtmsDao(getWritableDatabase());
     }
 
     @Override
@@ -34,12 +34,13 @@ public class BankOpenHelper extends SQLiteOpenHelper implements DatabaseHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL(AtmsDao.SQL_DROP_TABLE);
+        onCreate(db);
     }
 
     @Override
     public DatabaseDao databaseHelper() {
-        return atmsDao;
+        return databaseDao;
     }
 
 }
