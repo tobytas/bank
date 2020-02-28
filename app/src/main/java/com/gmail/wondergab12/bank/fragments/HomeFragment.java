@@ -81,7 +81,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
-
     }
 
     @Override
@@ -130,7 +129,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     private String getCurrentCity() {
         LatLng userLatLng = getActualLatLng();
         Locale locale = new Locale("ru");
-
         Geocoder geocoder = new Geocoder(getContext(), locale);
         try {
             if (userLatLng != null) {
@@ -194,7 +192,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 marker.setTag(atm);
             }
         });
-
         viewModel.getAtmList(getCurrentCity(), "USD");
     }
 

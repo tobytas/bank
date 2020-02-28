@@ -1,8 +1,5 @@
 package com.gmail.wondergab12.bank.repository;
 
-import android.content.Context;
-
-import com.gmail.wondergab12.bank.repository.database.BankOpenHelper;
 import com.gmail.wondergab12.bank.repository.database.DatabaseDao;
 import com.gmail.wondergab12.bank.repository.database.DatabaseResponse;
 
@@ -12,8 +9,8 @@ public class RepoImpl implements Repository {
 
     private DatabaseDao databaseDao;
 
-    public RepoImpl(Context context) {
-        databaseDao = BankOpenHelper.getInstance(context).databaseHelper();
+    public RepoImpl(DatabaseDao databaseDao) {
+        this.databaseDao = databaseDao;
     }
 
     @Override

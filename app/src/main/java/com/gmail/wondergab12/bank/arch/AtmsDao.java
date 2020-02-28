@@ -1,8 +1,11 @@
-package com.gmail.wondergab12.bank.repository.database;
+package com.gmail.wondergab12.bank.arch;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.gmail.wondergab12.bank.repository.database.DatabaseDao;
+import com.gmail.wondergab12.bank.repository.database.DatabaseResponse;
 
 import java.util.Calendar;
 import java.util.Optional;

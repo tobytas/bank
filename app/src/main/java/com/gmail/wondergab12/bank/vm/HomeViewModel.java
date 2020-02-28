@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.gmail.wondergab12.bank.consts.Consts;
 import com.gmail.wondergab12.bank.model.Atm;
-import com.gmail.wondergab12.bank.model.JsonParser;
+import com.gmail.wondergab12.bank.model.JsonParse;
 import com.gmail.wondergab12.bank.repository.RepoImpl;
 import com.gmail.wondergab12.bank.repository.database.DatabaseResponse;
 
@@ -93,7 +93,7 @@ public class HomeViewModel extends ViewModel {
             }
         }).map(Optional::get)
                 .map(DatabaseResponse::getStringResponse)
-                .map(JsonParser::getAtms)
+                .map(JsonParse.Companion::getAtms)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(list -> atms.setValue(list), err -> errs.setValue(err));

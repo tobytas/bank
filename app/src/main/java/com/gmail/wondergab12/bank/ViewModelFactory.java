@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.gmail.wondergab12.bank.repository.RepoImpl;
+import com.gmail.wondergab12.bank.repository.database.BankOpenHelper;
 import com.gmail.wondergab12.bank.vm.HomeViewModel;
 
 public class ViewModelFactory implements ViewModelProvider.Factory {
@@ -20,7 +21,7 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new HomeViewModel(new RepoImpl(context));
+        return (T) new HomeViewModel(new RepoImpl(BankOpenHelper.getInstance(context).databaseDao()));
     }
 
 }

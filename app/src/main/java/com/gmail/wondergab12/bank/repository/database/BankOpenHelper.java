@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-
 public class BankOpenHelper extends SQLiteOpenHelper implements DatabaseHelper {
 
     private static final String DATABASE_NAME = "bank.db";
@@ -29,17 +28,17 @@ public class BankOpenHelper extends SQLiteOpenHelper implements DatabaseHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(AtmsDao.SQL_CREATE_ATMS_TABLE);
+        db.execSQL(AtmsDaoKt.SQL_CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(AtmsDao.SQL_DROP_TABLE);
+        db.execSQL(AtmsDaoKt.SQL_DROP_TABLE);
         onCreate(db);
     }
 
     @Override
-    public DatabaseDao databaseHelper() {
+    public DatabaseDao databaseDao() {
         return databaseDao;
     }
 
