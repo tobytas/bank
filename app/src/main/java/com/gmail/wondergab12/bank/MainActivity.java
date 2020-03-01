@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.Home
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //If first creating(not recreating after display rotation , for example)
+        // If first creating(not recreating after display rotation, for example)
         if (savedInstanceState == null) {
             showHomeFragment();
         }

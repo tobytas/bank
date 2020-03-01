@@ -11,11 +11,11 @@
     <string name="work_time">work time</string>
     <string name="gps_x">latitude</string>
     <string name="gps_y">longitude</string>
-    <string name="install_place_full">Bank</string>
-    <string name="work_time_full">Bank</string>
-    <string name="ATM_type">Bank</string>
-    <string name="ATM_error">Bank</string>
-    <string name="currency">Bank</string>
-    <string name="cash_in">Bank</string>
-    <string name="ATM_printer">Bank</string>
+    <string name="install_place_full">install place full</string>
+    <string name="work_time_full">work time full</string>
+    <string name="ATM_type">ATM type</string>
+    <string name="ATM_error">ATM error</string>
+    <string name="currency">currency</string>
+    <string name="cash_in">cash in</string>
+    <string name="ATM_printer">ATM printer</string>
 </resources>

@@ -5,7 +5,7 @@ public class DatabaseResponse {
     private long date;
     private String stringResponse;
 
-    public DatabaseResponse(long date, String stringResponse) {
+    DatabaseResponse(long date, String stringResponse) {
         this.date = date;
         this.stringResponse = stringResponse;
     }

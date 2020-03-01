@@ -53,16 +53,16 @@ public class InfoFragment extends Fragment {
         private String fieldName;
         private String fieldValue;
 
-        public AtmField(String fieldName, String fieldValue) {
+        AtmField(String fieldName, String fieldValue) {
             this.fieldName = fieldName;
             this.fieldValue = fieldValue;
         }
 
-        public String getFieldName() {
+        String getFieldName() {
             return fieldName;
         }
 
-        public String getFieldValue() {
+        String getFieldValue() {
             return fieldValue;
         }
 
@@ -72,7 +72,7 @@ public class InfoFragment extends Fragment {
 
         private List<AtmField> dataList;
 
-        public RecyclerAdapter(List<AtmField> dataList) {
+        RecyclerAdapter(List<AtmField> dataList) {
             this.dataList = dataList;
         }
 
@@ -98,7 +98,7 @@ public class InfoFragment extends Fragment {
             private TextView name;
             private TextView value;
 
-            public RecyclerHolder(@NonNull View itemView) {
+            RecyclerHolder(@NonNull View itemView) {
                 super(itemView);
                 name = itemView.findViewById(R.id.field_name);
                 value = itemView.findViewById(R.id.field_value);
@@ -114,8 +114,9 @@ public class InfoFragment extends Fragment {
     private List<AtmField> getAtmFields(Atm atm) {
         List<AtmField> list = new ArrayList<>();
 
-        list.add(new AtmField(getString(R.string.id), atm.getId()));
-        list.add(new AtmField(getString(R.string.area), atm.getArea()));
+        //list.add(new AtmField(getString(R.string.id), atm.getId()));
+        //list.add(new AtmField(getString(R.string.area), atm.getArea()));
+
         list.add(new AtmField(getString(R.string.city_type), atm.getCityType()));
         list.add(new AtmField(getString(R.string.city), atm.getCity()));
         list.add(new AtmField(getString(R.string.address_type), atm.getAddressType()));
@@ -123,10 +124,12 @@ public class InfoFragment extends Fragment {
         list.add(new AtmField(getString(R.string.house), atm.getHouse()));
         list.add(new AtmField(getString(R.string.install_place), atm.getInstallPlace()));
         list.add(new AtmField(getString(R.string.work_time), atm.getWorkTime()));
-        list.add(new AtmField(getString(R.string.gps_x), atm.getGpsX()));
-        list.add(new AtmField(getString(R.string.gps_y), atm.getGpsY()));
-        list.add(new AtmField(getString(R.string.install_place_full), atm.getInstallPlaceFull()));
-        list.add(new AtmField(getString(R.string.work_time_full), atm.getWorkTimeFull()));
+
+        //list.add(new AtmField(getString(R.string.gps_x), atm.getGpsX()));
+        //list.add(new AtmField(getString(R.string.gps_y), atm.getGpsY()));
+        //list.add(new AtmField(getString(R.string.install_place_full), atm.getInstallPlaceFull()));
+        //list.add(new AtmField(getString(R.string.work_time_full), atm.getWorkTimeFull()));
+
         list.add(new AtmField(getString(R.string.ATM_type), atm.getAtmType()));
         list.add(new AtmField(getString(R.string.ATM_error), atm.getAtmError()));
         list.add(new AtmField(getString(R.string.currency), atm.getCurrency()));

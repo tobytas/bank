@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.gmail.wondergab12.bank.consts.Consts;
 import com.gmail.wondergab12.bank.model.Atm;
-import com.gmail.wondergab12.bank.model.JsonParse;
+import com.gmail.wondergab12.bank.model.JsonParser;
 import com.gmail.wondergab12.bank.repository.RepoImpl;
 import com.gmail.wondergab12.bank.repository.database.DatabaseResponse;
 
@@ -60,43 +60,33 @@ public class HomeViewModel extends ViewModel {
     }
 
     public void getAtmList(String city, String currency) {
-        /*
-        Observable<Response> observable = Observable.create(emitter ->
-                emitter.onNext(client.newCall(request).execute()));
-        observable.map(Response::body)
-                .map(ResponseBody::string)
-                .map(responseString -> repository.insertResponse(city, currency, responseString))
-                .map(longValue -> repository.readResponse(city, currency))
-                .map(JsonParser::getAtms)
-                .subscribeOn(Schedulers.io())
-                .subscribe(list -> atms.postValue(list), err -> errs.postValue(err));
-         */
+
         /*  First check the cache
-         *  if it is empty: make request , write to cache
+         *  if it is empty: make request, write to cache
          *  and take from it
          *  otherwise: simply take from cache
          */
-        Observable<Optional<DatabaseResponse>> observable = Observable.create(emitter ->
-                emitter.onNext(repository.readResponse(city, currency)));
-        disposable = observable.flatMap((Function<Optional<DatabaseResponse>,
-                ObservableSource<Optional<DatabaseResponse>>>) optionalDatabaseResponse -> {
-            if (!optionalDatabaseResponse.isPresent() || Calendar.getInstance()
-                    .getTimeInMillis() - optionalDatabaseResponse.get().getDate() > REFRESH_INTERVAL) {
-                return Observable.create((ObservableOnSubscribe<Response>) emitter ->
-                        emitter.onNext(getNetworkResponse(city, currency)))
-                        .map(Response::body)
-                        .map(ResponseBody::string)
-                        .map(responseString -> repository.insertResponse(city, currency, responseString))
-                        .map(longValue -> repository.readResponse(city, currency));
-            } else {
-                return Observable.create(emitter -> emitter.onNext(optionalDatabaseResponse));
-            }
-        }).map(Optional::get)
-                .map(DatabaseResponse::getStringResponse)
-                .map(JsonParse.Companion::getAtms)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(list -> atms.setValue(list), err -> errs.setValue(err));
+         disposable = Observable.create((ObservableOnSubscribe<Optional<DatabaseResponse>>) emitter ->
+                 emitter.onNext(repository.readResponse(city, currency)))
+                 .flatMap((Function<Optional<DatabaseResponse>,
+                         ObservableSource<Optional<DatabaseResponse>>>) optionalDatabaseResponse -> {
+                     if (!optionalDatabaseResponse.isPresent() || Calendar.getInstance()
+                             .getTimeInMillis() - optionalDatabaseResponse.get().getDate() > REFRESH_INTERVAL) {
+                         return Observable.create((ObservableOnSubscribe<Response>) emitter ->
+                                 emitter.onNext(getNetworkResponse(city, currency)))
+                                 .map(Response::body)
+                                 .map(ResponseBody::string)
+                                 .map(responseString -> repository.insertResponse(city, currency, responseString))
+                                 .map(longValue -> repository.readResponse(city, currency));
+                     } else {
+                         return Observable.create(emitter -> emitter.onNext(optionalDatabaseResponse));
+                     }
+                 }).map(Optional::get)
+                 .map(DatabaseResponse::getStringResponse)
+                 .map(JsonParser::getAtms)
+                 .subscribeOn(Schedulers.io())
+                 .observeOn(AndroidSchedulers.mainThread())
+                 .subscribe(list -> atms.setValue(list), err -> errs.setValue(err));
     }
 
     private Response getNetworkResponse(String city, String currency) throws IOException {

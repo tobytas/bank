@@ -1,6 +1,4 @@
-package com.gmail.wondergab12.bank.arch;
-
-import com.gmail.wondergab12.bank.model.Atm;
+package com.gmail.wondergab12.bank.model;
 
 import org.json.JSONArray;
 import org.json.JSONException;

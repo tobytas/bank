@@ -1,11 +1,8 @@
-package com.gmail.wondergab12.bank.arch;
+package com.gmail.wondergab12.bank.repository.database;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
-import com.gmail.wondergab12.bank.repository.database.DatabaseDao;
-import com.gmail.wondergab12.bank.repository.database.DatabaseResponse;
 
 import java.util.Calendar;
 import java.util.Optional;
@@ -19,7 +16,7 @@ public class AtmsDao implements DatabaseDao {
     private static final String COLUMN_CURRENCY = "currency";
     private static final String COLUMN_RESPONSE = "response";
 
-    static final String SQL_CREATE_ATMS_TABLE = String.format(
+    static final String SQL_CREATE_TABLE = String.format(
             "CREATE TABLE %s (" +
                     "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "%s INTEGER, " +
@@ -58,6 +55,7 @@ public class AtmsDao implements DatabaseDao {
     @Override
     public Optional<DatabaseResponse> readRecord(String city, String currency) {
         Optional<DatabaseResponse> response = Optional.empty();
+
         Cursor cursor = db.query(TABLE_NAME, new String[]{COLUMN_DATE, COLUMN_RESPONSE},
                 String.format("%s = ? AND %s = ?", COLUMN_CITY, COLUMN_CURRENCY),
                 new String[]{city, currency}, null, null, null);

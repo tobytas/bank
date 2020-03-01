@@ -28,12 +28,12 @@ public class BankOpenHelper extends SQLiteOpenHelper implements DatabaseHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(AtmsDaoKt.SQL_CREATE_TABLE);
+        db.execSQL(AtmsDao.SQL_CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(AtmsDaoKt.SQL_DROP_TABLE);
+        db.execSQL(AtmsDao.SQL_DROP_TABLE);
         onCreate(db);
     }
 
